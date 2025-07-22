@@ -302,3 +302,14 @@ function closeMenu() {
     overlay.classList.add("hidden");
     overlay.classList.remove("opacity-100");
 }
+
+// Enter value functionable
+// Listen for Enter key press in textarea
+messageInput.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault(); // Prevent newline
+    chatForm.requestSubmit(); // Trigger form submit
+  }
+});
+
+

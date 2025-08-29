@@ -95,7 +95,7 @@ function addTypingIndicator() {
 }
 // Function to fetch AI response
 async function fetchAIResponse(message) {
-    const API_KEY = "AIzaSyCKgfldmSCTXexlh-auRt_sONhOwcLKHrw"; // Replace with your actual API key
+    const API_KEY = "AIzaSyBPqtnQx0a3UUs8ThftOYgLpXd3vf4CJlw"; // Replace with your actual API key
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
     try {

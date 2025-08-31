@@ -80,16 +80,6 @@ function formatAIResponse(text) {
     return text;
 }
 
-// Escape HTML to prevent XSS
-function escapeHtml(unsafe) {
-    return unsafe
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
 // Function to add a message to the chat
 function addMessage(text, isUser) {
     // Remove welcome message if it exists

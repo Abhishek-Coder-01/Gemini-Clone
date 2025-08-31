@@ -54,6 +54,42 @@ chatForm.addEventListener('submit', async function (e) {
     addMessage(aiResponse, false);
 });
 
+function formatAIResponse(text) {
+    if (!text) return '';
+    
+    // Format code blocks with optional language
+    text = text.replace(/```(\w+)?\n([\s\S]*?)```/g, function(match, lang, code) {
+        const languageClass = lang ? `language-${lang}` : 'plaintext';
+        return `<pre><code class="${languageClass}">${escapeHtml(code.trim())}</code></pre>`;
+    });
+
+    // Format bold (**bold**)
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+    // Format italic (*italic*)
+    text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+    // Format inline code `like this`
+    text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+    // Format line breaks and paragraphs
+    text = text.replace(/\n\n/g, '</p><p>');
+    text = text.replace(/\n/g, '<br>');
+    text = `<p>${text}</p>`;
+
+    return text;
+}
+
+// Escape HTML to prevent XSS
+function escapeHtml(unsafe) {
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 // Function to add a message to the chat
 function addMessage(text, isUser) {
     // Remove welcome message if it exists
